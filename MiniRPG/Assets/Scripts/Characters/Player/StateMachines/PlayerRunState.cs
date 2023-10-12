@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerRunState : PlayerGroundState
 {
@@ -19,5 +20,11 @@ public class PlayerRunState : PlayerGroundState
     {
         base.Exit();
         StopAnimation(StateMachine.Player.AnimationData.RunParameterHash);
+    }
+
+    protected override void OnRunCanceled(InputAction.CallbackContext context)
+    {
+        base.OnRunCanceled(context);
+        StateMachine.ChangeState(StateMachine.IdleState);
     }
 }

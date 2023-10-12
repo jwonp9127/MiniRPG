@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
 
-    private PlayerStateMachine _stateMachine;
+    private PlayerStateMachine stateMachine;
     
     private void Awake()
     {
@@ -30,23 +30,23 @@ public class Player : MonoBehaviour
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
 
-        _stateMachine = new PlayerStateMachine(this);
+        stateMachine = new PlayerStateMachine(this);
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        _stateMachine.ChangeState(_stateMachine.IdleState);
+        stateMachine.ChangeState(stateMachine.IdleState);
     }
 
     private void Update()
     {
-        _stateMachine.HandleInput();
-        _stateMachine.Update();
+        stateMachine.HandleInput();
+        stateMachine.Update();
     }
 
     private void FixedUpdate()
     {
-        _stateMachine.PhysicsUpdate();
+        stateMachine.PhysicsUpdate();
     }
 }

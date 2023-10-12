@@ -25,11 +25,11 @@ public class PlayerGroundState : PlayerBaseState
     {
         base.Update();
         
-        if(StateMachine.IsAttacking)
-        {
-            OnAttack();
-            return;
-        }
+        // if(StateMachine.IsAttacking)
+        // {
+        //     OnAttack();
+        //     return;
+        // }
     }
 
     public override void PhysicsUpdate()
